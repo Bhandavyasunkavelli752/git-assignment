@@ -1,0 +1,190 @@
+1)
+----------------------------------
+package com.capgemini.generics;
+
+import java.util.HashSet;
+
+class Employee
+{
+	//Declaring states
+	int id;
+	String name;
+	double salary;
+	String department;
+	//parameritized constructor
+	public Employee(int id, String name, double salary, String department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+		this.department = department;
+	}
+	//Getters and setters
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", department=" + department + "]";
+	}
+}
+public class Assignment1 {
+
+	public static void main(String[] args) {
+		//Passing Employee has argument
+		HashSet<Employee> hashset=new HashSet<Employee>();
+		hashset.add(new Employee(1,"chethan",2000000.0,"Tech"));
+		//Retriving genericType(Employee)
+		for(Employee hs:hashset)
+		{
+			System.out.println(hs);
+		}
+	}
+
+}
+
+
+
+2)
+---------------------------
+
+
+package com.capgemini.generics;
+
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Assignment2 {
+
+	public static void main(String[] args) {
+	HashMap<Integer,Double> hashmap=new HashMap<Integer,Double>();
+	//This will make ask user to give input
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter limit");
+	int limit=9;
+	//Using limit limiting this only to take 10 inputs
+	for(int i=0;i<=limit;i++)
+	{
+		int number=sc.nextInt();
+		double dd=sc.nextDouble();
+		//Taking key and value from user and passing the same in hashmap
+		hashmap.put(number,dd);
+	}
+	Set<Entry<Integer,Double>> ss=hashmap.entrySet();
+	for(Entry<Integer,Double> en:ss)
+	{
+		System.out.println(en.getKey()+" "+en.getValue());
+	}
+	sc.close();
+	}
+	
+}
+
+
+
+3)
+---------------------------------------
+
+package com.capgemini.generics;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+public class Assignment3 {
+	public static <T> void swap(T[] a,int i,int j)
+	{
+		//Swapping implementation is done here
+		T t=a[i];
+		a[i]=a[j];
+		a[j]=t;
+	}
+	public static <T> void swap(List<T> l,int i,int j)
+	{
+		//InbUilt method which helps in swapping
+		Collections.<T>swap(l,i,j);
+	}
+	public static void test()
+	{
+		String []a= {"1","2"};
+		//Input
+		List<String> l=new ArrayList<String>(Arrays.asList(a));
+		swap(l,0,1);
+		System.out.println("l :"+l);
+	}
+	public static void main(String[] args) {
+		//Calling the methods 
+		test();
+	}
+
+}
+
+
+4)
+-----------------------------------------
+
+package com.capgemini.generics;
+
+public class Pair<Key,Value>{
+	//Class if of Generic Type
+		Key t;
+		Value e;
+	//Constructor which initializes the value
+	public Pair(Key t,Value e)
+	{
+		this.t=t;
+		this.e=e;
+	}
+	
+	//Setters and Getters
+	public void setKey(Key t) {
+		this.t = t;
+	}
+
+	public void setValue(Value e) {
+		this.e = e;
+	}
+	public static void main(String[] args) {
+		//First Object
+		Pair<String,String> pair=new Pair<String,String>("","");
+		pair.setKey("1");
+		pair.setValue("Hello");
+		System.out.println(pair.toString());
+		//Second Object
+		Pair<String,String> pair1=new Pair<String,String>("","");
+		pair1.setKey("This is");
+		pair1.setValue("new java.util.Date()");
+		System.out.println(pair1.toString());
+				
+	}
+	@Override
+	public String toString() {
+		return "Pair [t=" + t + ", e=" + e + "]";
+	}
+
+}
+
+
